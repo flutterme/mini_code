@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// 颜色工具
 class ColorUtil {
   /// 根据十六进制颜色值字符串，转颜色
   static Color getColorWithHexString(String? hexColor,
@@ -16,6 +17,7 @@ class ColorUtil {
     return Color(int.tryParse(hexColor, radix: 16) ?? 0x00000000);
   }
 
+  /// 更改颜色值
   static Color changeColor(Color color, int changeValue) {
     assert(changeValue.abs() < 256);
     int r = color.red + changeValue;
@@ -28,6 +30,7 @@ class ColorUtil {
   }
 }
 
+/// 常见颜色值列表
 const Map<String, Color> COLORS_MAP = const {
   "AliceBlue": Color(0xFFF0F8FF),
   "AntiqueWhite": Color(0xFFFAEBD7),

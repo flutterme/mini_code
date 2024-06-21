@@ -1,15 +1,5 @@
 import 'dart:async';
 
-///timer callback.(millisUntilFinished 毫秒).
-typedef void OnTimerTickCallback(int? millisUntilFinished);
-
-/**
- * @Author: thl
- * @GitHub: https://github.com/Sky24n
- * @Description: Timer Util.
- * @Date: 2018/9/28
- */
-
 /// TimerUtil.
 class TimerUtil {
   TimerUtil({this.mInterval = Duration.millisecondsPerSecond, this.mTotalTime});
@@ -29,7 +19,7 @@ class TimerUtil {
   /// 倒计时总时间
   int? mTotalTime; //单位毫秒
 
-  OnTimerTickCallback? _onTimerTickCallback;
+  Function(int? millisUntilFinished)? _onTimerTickCallback;
 
   /// set Timer interval. (unit millisecond).
   /// 设置Timer间隔.
@@ -89,7 +79,6 @@ class TimerUtil {
     }
   }
 
-  /// update countdown totalTime.
   /// 重设倒计时总时间.
   void updateTotalTime(int totalTime) {
     cancel();
@@ -97,13 +86,11 @@ class TimerUtil {
     startCountDown();
   }
 
-  /// timer is Active.
   /// Timer是否启动.
   bool isActive() {
     return _isActive;
   }
 
-  /// Cancels the timer.
   /// 取消计时器.
   void cancel() {
     if (_mTimer != null) {
@@ -113,8 +100,7 @@ class TimerUtil {
     _isActive = false;
   }
 
-  /// set timer callback.
-  void setOnTimerTickCallback(OnTimerTickCallback callback) {
+  void setOnTimerTickCallback(Function(int? millisUntilFinished) callback) {
     _onTimerTickCallback = callback;
   }
 }
