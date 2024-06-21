@@ -1,4 +1,4 @@
-import 'package:rational/rational.dart';
+import 'rational.dart';
 
 class Decimal implements Comparable<Decimal> {
   factory Decimal.parse(String value) =>

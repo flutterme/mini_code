@@ -38,7 +38,7 @@ class NumUtil {
 
   ///isZero
   static bool isZero(num value) {
-    return value == null || value == 0;
+    return value == 0;
   }
 
   /// 加 (精确相加,防止精度丢失).

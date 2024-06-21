@@ -1,7 +1,7 @@
 import 'dart:async';
 
 ///timer callback.(millisUntilFinished 毫秒).
-typedef void OnTimerTickCallback(int millisUntilFinished);
+typedef void OnTimerTickCallback(int? millisUntilFinished);
 
 /**
  * @Author: thl
@@ -23,7 +23,7 @@ class TimerUtil {
 
   /// Timer interval (unit millisecond，def: 1000 millisecond).
   /// Timer间隔 单位毫秒，默认1000毫秒(1秒).
-  late int mInterval;
+  int mInterval;
 
   /// countdown totalTime.
   /// 倒计时总时间
@@ -60,7 +60,7 @@ class TimerUtil {
   /// start countdown Timer.
   /// 启动倒计时Timer.
   void startCountDown() {
-    if (_isActive || mInterval <= 0 || (mTotalTime ?? 0) <= 0) return;
+    if (_isActive || mInterval <= 0 || mTotalTime! <= 0) return;
     _isActive = true;
     Duration duration = Duration(milliseconds: mInterval);
     _doCallback(mTotalTime);
@@ -84,7 +84,7 @@ class TimerUtil {
   }
 
   void _doCallback(int? time) {
-    if (_onTimerTickCallback != null && time != null) {
+    if (_onTimerTickCallback != null) {
       _onTimerTickCallback!(time);
     }
   }

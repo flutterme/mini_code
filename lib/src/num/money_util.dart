@@ -6,6 +6,7 @@ enum MoneyUnit {
   YUAN_ZH, // 6.00元
   DOLLAR, // $6.00
 }
+
 enum MoneyFormat {
   NORMAL, //保留两位小数(6.00元)
   END_INTEGER, //去掉末尾'0'(6.00元 -> 6元, 6.60元 -> 6.6元)
@@ -29,7 +30,7 @@ class MoneyUtil {
   static String? changeF2Y(int? amount,
       {MoneyFormat format = MoneyFormat.NORMAL}) {
     if (amount == null) return null;
-    String moneyTxt;
+    String? moneyTxt;
     double yuan = NumUtil.divide(amount, 100);
     switch (format) {
       case MoneyFormat.NORMAL:
@@ -76,20 +77,23 @@ class MoneyUtil {
 
   /// yuan, format & unit  output.(yuan is int,double,str).
   /// 元, format 与 unit 格式 输出.
-  static String? changeYWithUnit(Object? yuan, MoneyUnit unit,
+  static String? changeYWithUnit(dynamic yuan, MoneyUnit unit,
       {MoneyFormat? format}) {
     if (yuan == null) return null;
     String? yuanTxt = yuan.toString();
     if (format != null) {
       int? amount = changeY2F(yuan);
-      yuanTxt = changeF2Y(amount?.toInt(), format: format);
+      if (amount == null) {
+        return null;
+      }
+      yuanTxt = changeF2Y(amount.toInt(), format: format);
     }
     return _withUnit(yuanTxt, unit);
   }
 
   /// yuan to fen.
   /// 元 转 分，
-  static int? changeY2F(Object? yuan) {
+  static int? changeY2F(dynamic yuan) {
     if (yuan == null) return null;
     return NumUtil.multiplyDecStr(yuan.toString(), '100').toInt();
   }
