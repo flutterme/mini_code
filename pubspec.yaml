@@ -1,10 +1,10 @@
 name: mini_tools
 description: A pure dart tool class, including file tools, sp tools, etc.
-version: 3.0.0
+version: 3.0.1
 homepage: https://github.com/flutterme/mini_tools.git
 
 environment:
-  sdk: ">=3.2.0 <4.0.0"
+  sdk: ">=3.1.0 <4.0.0"
   flutter: ">=1.17.0"
 
 dependencies:
